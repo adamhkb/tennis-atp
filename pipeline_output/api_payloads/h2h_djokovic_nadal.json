@@ -1,0 +1,52 @@
+{
+  "player_1": "Djokovic N.",
+  "player_2": "Nadal R.",
+  "head_to_head": {
+    "p1_wins": 29,
+    "p2_wins": 25,
+    "total": 54
+  },
+  "recent_matches": [
+    {
+      "Date": "2022-05-31",
+      "Tournament": "French Open",
+      "Round": "Quarterfinals",
+      "Surface": "Clay",
+      "winner_name": "Nadal R.",
+      "Score": "6-2 4-6 6-2 7-6"
+    },
+    {
+      "Date": "2021-06-11",
+      "Tournament": "French Open",
+      "Round": "Semifinals",
+      "Surface": "Clay",
+      "winner_name": "Djokovic N.",
+      "Score": "6-3 3-6 6-7 2-6"
+    },
+    {
+      "Date": "2021-05-16",
+      "Tournament": "Internazionali BNL d'Italia",
+      "Round": "The Final",
+      "Surface": "Clay",
+      "winner_name": "Nadal R.",
+      "Score": "7-5 1-6 6-3"
+    },
+    {
+      "Date": "2020-10-11",
+      "Tournament": "French Open",
+      "Round": "The Final",
+      "Surface": "Clay",
+      "winner_name": "Nadal R.",
+      "Score": "0-6 2-6 5-7"
+    },
+    {
+      "Date": "2019-05-19",
+      "Tournament": "Internazionali BNL d'Italia",
+      "Round": "The Final",
+      "Surface": "Clay",
+      "winner_name": "Nadal R.",
+      "Score": "6-0 4-6 6-1"
+    }
+  ],
+  "generated_at": "2026-02-03T20:13:43.329679"
+}

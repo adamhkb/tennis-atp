@@ -1,0 +1,28 @@
+{
+  "graphic_type": "pre_match_overlay",
+  "player_1": {
+    "name": "Djokovic N.",
+    "career_wins": 1063,
+    "titles": 98,
+    "win_rate": 84.0
+  },
+  "player_2": {
+    "name": "Nadal R.",
+    "career_wins": 1007,
+    "titles": 89,
+    "win_rate": 82.9
+  },
+  "head_to_head": {
+    "Djokovic N._wins": 29,
+    "Nadal R._wins": 25,
+    "total_matches": 54
+  },
+  "last_meeting": {
+    "Date": "2022-05-31",
+    "Tournament": "French Open",
+    "Round": "Quarterfinals",
+    "Winner": "Nadal R.",
+    "Score": "6-2 4-6 6-2 7-6"
+  },
+  "generated_at": "2026-02-03T19:10:12.144336"
+}

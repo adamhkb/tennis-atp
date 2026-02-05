@@ -1,0 +1,14 @@
+{
+  "pipeline": "Tennis ATP ETL",
+  "version": "1.0.0",
+  "run_at": "2026-02-03T20:13:49.634658",
+  "source": "atp_tennis.csv",
+  "records_processed": 66910,
+  "dq_score": 100,
+  "outputs": {
+    "dim_players": 1713,
+    "dim_tournaments": 340,
+    "fact_matches": 66910,
+    "partitions": "year/month"
+  }
+}

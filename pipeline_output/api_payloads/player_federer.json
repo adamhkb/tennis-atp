@@ -1,0 +1,27 @@
+{
+  "player": "Federer R.",
+  "career": {
+    "total_matches": 1402,
+    "wins": 1157,
+    "losses": 245,
+    "win_rate": 82.5
+  },
+  "by_surface": {
+    "hard": {
+      "matches": 862,
+      "wins": 719,
+      "win_rate": 83.4
+    },
+    "clay": {
+      "matches": 273,
+      "wins": 210,
+      "win_rate": 76.9
+    },
+    "grass": {
+      "matches": 208,
+      "wins": 182,
+      "win_rate": 87.5
+    }
+  },
+  "generated_at": "2026-02-03T20:13:43.322978"
+}

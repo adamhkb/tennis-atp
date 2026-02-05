@@ -1,0 +1,33 @@
+{
+  "player_name": "Federer R.",
+  "career_stats": {
+    "total_matches": 1393,
+    "wins": 1151,
+    "losses": 242,
+    "win_rate": 82.6,
+    "titles": 102
+  },
+  "surface_breakdown": {
+    "hard": {
+      "matches": 853,
+      "wins": 713,
+      "win_rate": 83.6
+    },
+    "clay": {
+      "matches": 273,
+      "wins": 210,
+      "win_rate": 76.9
+    },
+    "grass": {
+      "matches": 208,
+      "wins": 182,
+      "win_rate": 87.5
+    },
+    "carpet": {
+      "matches": 59,
+      "wins": 46,
+      "win_rate": 78.0
+    }
+  },
+  "generated_at": "2026-02-03T19:10:12.131194"
+}

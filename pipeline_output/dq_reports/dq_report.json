@@ -1,0 +1,85 @@
+{
+  "generated_at": "2026-02-03T19:10:11.214166",
+  "total_records": 66910,
+  "dq_score": 100.0,
+  "issues_summary": {
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "issues": [],
+  "metrics": {
+    "completeness": {
+      "missing_count": {
+        "Tournament": 0,
+        "Winner": 0,
+        "Odd_2": 1,
+        "Odd_1": 0,
+        "Pts_2": 0,
+        "Pts_1": 0,
+        "Rank_2": 0,
+        "Rank_1": 0,
+        "Player_2": 0,
+        "Date": 0,
+        "Player_1": 0,
+        "Best of": 0,
+        "Round": 0,
+        "Surface": 0,
+        "Court": 0,
+        "Series": 0,
+        "Score": 0
+      },
+      "missing_pct": {
+        "Tournament": 0.0,
+        "Winner": 0.0,
+        "Odd_2": 0.0,
+        "Odd_1": 0.0,
+        "Pts_2": 0.0,
+        "Pts_1": 0.0,
+        "Rank_2": 0.0,
+        "Rank_1": 0.0,
+        "Player_2": 0.0,
+        "Date": 0.0,
+        "Player_1": 0.0,
+        "Best of": 0.0,
+        "Round": 0.0,
+        "Surface": 0.0,
+        "Court": 0.0,
+        "Series": 0.0,
+        "Score": 0.0
+      },
+      "complete_pct": {
+        "Tournament": 100.0,
+        "Winner": 100.0,
+        "Odd_2": 100.0,
+        "Odd_1": 100.0,
+        "Pts_2": 100.0,
+        "Pts_1": 100.0,
+        "Rank_2": 100.0,
+        "Rank_1": 100.0,
+        "Player_2": 100.0,
+        "Date": 100.0,
+        "Player_1": 100.0,
+        "Best of": 100.0,
+        "Round": 100.0,
+        "Surface": 100.0,
+        "Court": 100.0,
+        "Series": 100.0,
+        "Score": 100.0
+      }
+    },
+    "anomalies": {
+      "extreme_rankings": {
+        "count": 9,
+        "max_rank_1": "3390",
+        "max_rank_2": "4915"
+      },
+      "invalid_odds": {
+        "count": 6
+      },
+      "date_anomalies": {
+        "count": 0
+      }
+    }
+  }
+}
