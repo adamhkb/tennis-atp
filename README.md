@@ -1,1 +1,208 @@
-# tennis-atp
+# Tennis ATP - ETL Pipeline & API
+
+A production-grade ETL pipeline for ATP tennis match data (2000-2026) with data quality monitoring, dimensional modeling, and a REST API.
+
+Dataset: https://www.kaggle.com/datasets/dissfya/atp-tennis-2000-2023daily-pull/suggestions
+---
+
+## Quick Start
+
+### 1. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Run the ETL Pipeline
+
+```bash
+jupyter notebook tennisviz_etl_portfolio.ipynb
+```
+
+Run all cells: **Kernel → Restart & Run All**
+
+### 3. Start the API
+
+```bash
+python app.py
+```
+
+API runs at: `http://localhost:5000`
+
+### 4. Open the Frontend
+
+With the API running, open `index.html` in your browser:
+
+```bash
+open index.html
+```
+
+Or just double-click `index.html` to test the API visually.
+
+---
+
+
+## Notebook Walkthrough
+
+| Section | Layer | What It Does |
+|---------|-------|--------------|
+| 1-2. Setup & Extract | Bronze | Load raw CSV (66,000+ matches) |
+| 3. Transform | Silver | Clean types, parse dates, strip whitespace |
+| 4. Schema Validation | - | Validate columns against defined rules |
+| 5. Data Quality Report | - | Generate DQ score + issue summary |
+| 6. Score Parsing | - | Extract features from match scores |
+| 7. Dimensional Modeling | Gold | Create dim_players, dim_tournaments, fact_matches |
+| 8. Partitioned Parquet | - | Write warehouse-style partitioned files |
+| 9. API Payloads | - | Generate JSON for Flask endpoints |
+
+
+---
+
+## Key Concepts Explained
+
+### What is DQ (Data Quality)?
+
+**DQ = Data Quality** - a measure of how accurate, complete, and consistent your data is.
+
+The DQ report checks:
+- **Completeness**: Are required fields filled? (no nulls in Player_1, Player_2, Winner)
+- **Validity**: Are values in expected ranges? (odds > 1, ranks > 0)
+- **Consistency**: Does the data make sense? (Winner must be Player_1 or Player_2)
+
+**DQ Score** = 100% minus penalties for issues found.
+
+### Why is Data Quality 100% for this CSV?
+
+The ATP dataset is well-maintained:
+- All key fields (Date, Players, Winner, Score) are populated
+- No duplicate rows
+- Winner always matches one of the two players
+- The data has already been cleaned by the source
+
+A 100% score means no **high-severity** issues were detected. There may still be minor issues (like odds = -1 indicating missing data), but these don't break the pipeline.
+
+### What is fact_matches?
+
+In dimensional modeling, we separate data into:
+- **Dimension tables** (dim_): Descriptive attributes (players, tournaments)
+- **Fact tables** (fact_): Measurable events (matches)
+
+**fact_matches** contains one row per match with:
+- Foreign keys to dimensions (player_id, tournament_id)
+- Metrics (ranks, odds, sets won, games won)
+- Date partitions (year, month)
+
+This structure is optimized for analytics queries like "How many matches did Federer win on clay in 2019?"
+
+### What is Parquet?
+
+**Parquet** is a columnar file format designed for big data:
+- **Columnar**: Reads only the columns you need (fast for analytics)
+- **Compressed**: Much smaller than CSV
+- **Typed**: Preserves data types (dates, integers, strings)
+- **Partitioned**: Can split by year/month for efficient querying
+
+Example structure:
+```
+fact_matches/
+├── year=2020/
+│   ├── month=1/data.parquet
+│   ├── month=2/data.parquet
+│   └── ...
+├── year=2021/
+│   └── ...
+```
+
+This is exactly how data lakes on AWS S3 or Azure Blob are organized.
+
+---
+
+## API Endpoints
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /` | API documentation |
+| `GET /api/health` | Health check with data counts |
+| `GET /api/dq` | Data quality report |
+| `GET /api/players?q=federer` | Search players |
+| `GET /api/players/<name>/stats` | Player career statistics |
+| `GET /api/h2h/<player1>/<player2>` | Head-to-head record |
+| `GET /api/tournaments` | List tournaments |
+| `GET /api/tournaments/<name>` | Tournament details |
+
+### Example: Player Stats
+
+```bash
+curl http://localhost:5000/api/players/Federer%20R./stats
+```
+
+```json
+{
+  "player": "Federer R.",
+  "career": {
+    "total_matches": 1526,
+    "wins": 1251,
+    "losses": 275,
+    "win_rate": 82.0
+  },
+  "by_surface": {
+    "hard": {"matches": 875, "wins": 725, "win_rate": 82.9},
+    "clay": {"matches": 285, "wins": 215, "win_rate": 75.4},
+    "grass": {"matches": 195, "wins": 175, "win_rate": 89.7}
+  }
+}
+```
+
+### Example: Head-to-Head
+
+```bash
+curl http://localhost:5000/api/h2h/Federer%20R./Nadal%20R.
+```
+
+---
+
+## Project Structure
+
+```
+tennis-atp/
+├── README.md                      # This file
+├── requirements.txt               # Python dependencies
+├── app.py                         # Flask REST API
+├── index.html                     # Frontend UI (open in browser)
+├── tennisviz_etl_portfolio.ipynb  # Main ETL notebook
+├── atp_tennis.csv                 # Source data (66,000+ matches)
+│
+└── pipeline_output/               # Generated by notebook
+    ├── dim_players.parquet        # Player dimension
+    ├── dim_tournaments.parquet    # Tournament dimension
+    ├── fact_matches/              # Match facts (partitioned)
+    │   └── year=2024/month=01/data.parquet
+    ├── dq_report.json             # Data quality report
+    ├── dq_dashboard.png           # DQ visualization
+    └── api_payloads/              # Sample API responses
+```
+
+---
+
+## Tech Stack
+
+- **Python 3.11+**
+- **pandas** - Data processing
+- **pyarrow** - Parquet I/O
+- **Flask** - REST API
+- **matplotlib** - Visualizations
+- **HTML/JS** - Frontend UI
+
+---
+
+## Skills Demonstrated
+
+| Skill | Evidence |
+|-------|----------|
+| ETL Pipeline Design | Bronze → Silver → Gold layers |
+| Data Quality Monitoring | Schema validation, DQ scoring, automated reports |
+| Dimensional Modeling | Star schema (dim_players, dim_tournaments, fact_matches) |
+| Production Patterns | Partitioned parquet, metadata tracking, JSON contracts |
+| API Development | Flask REST endpoints with proper error handling |
+| Frontend Integration | HTML/JS UI that consumes the API |
+| Documentation | This README + notebook walkthrough |
