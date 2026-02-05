@@ -2,7 +2,7 @@
 
 A production-grade ETL pipeline for ATP tennis match data (2000-2026) with data quality monitoring, dimensional modeling, and a REST API.
 
-Dataset: https://www.kaggle.com/datasets/dissfya/atp-tennis-2000-2023daily-pull/suggestions
+Dataset: https://www.kaggle.com/datasets/dissfya/atp-tennis-2000-2023daily-pull/data
 ---
 
 ## Quick Start
